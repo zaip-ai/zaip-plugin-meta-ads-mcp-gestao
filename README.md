@@ -6,14 +6,17 @@ Cole esta mensagem no **Codex** ou no **Dot** da pessoa que vai usar os anúncio
 instale esse plugin https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao
 ```
 
-A pessoa pode estar em outro workspace. Basta enviar a frase, sem anexos. Na primeira tentativa, o assistente segue a [skill padrão de instalação](plugins/meta-ads-gestao/skills/configurar-meta-ads-mcp/SKILL.md) sem pedir acesso ao navegador nem outro login no ChatGPT. Quando aparecer a autorização da Meta, a própria pessoa entra, escolhe os ativos e aprova as permissões na tela oficial. Nunca envie senhas, códigos ou tokens no chat.
+Ao receber o pedido, o Codex instala o pacote no perfil local. No **ChatGPT Work no navegador**, o assistente deve procurar o plugin no workspace atual e, se faltar, usar o **Plugin Creator** para criar ali uma cópia privada com o servidor MCP oficial e devolver o link dela. A [skill de instalação](plugins/meta-ads-gestao/skills/configurar-meta-ads-mcp/SKILL.md) traz os passos para o assistente. A pessoa pode continuar na conversa em que já está autenticada.
 
-## O que o assistente faz com o link
+## Vincular sua conta Facebook quando quiser
 
-1. **No Codex local**, lê o catálogo deste repositório, registra ou atualiza a fonte no perfil da pessoa, instala o plugin e confere a versão. Os comandos estão na skill padrão para o assistente executar. A pessoa só precisa atender ao pedido de conexão quando o cliente apresentar o OAuth.
-2. **No Dot ou Work**, procura o conector no workspace onde recebeu a mensagem. Se encontrá-lo, reutiliza a conexão ou apresenta **Instalar → Conectar**. Se o cliente permitir cadastrar o servidor diretamente, o assistente usa essa operação. Um link do GitHub identifica o pacote e seus parâmetros. A instalação no Codex local não registra o conector em outro workspace.
-3. **Se o Dot não puder cadastrar o servidor**, o assistente informa a etapa pendente. A pessoa ou um administrador pode usar o caminho manual abaixo uma vez naquele workspace. Os demais usuários com acesso podem instalar a cópia disponibilizada ali e autorizar a própria conta Meta. Ninguém precisa liberar controle do navegador para fazer esses cliques.
-4. **Depois da autorização**, o assistente testa a leitura no cliente escolhido e informa o resultado. Um plugin instalado pode ainda estar aguardando a conexão da Meta.
+1. Abra o link que o assistente devolver e selecione **Instalar** se o ChatGPT oferecer essa opção.
+2. Quando quiser vincular o Facebook, abra **Plugins → Instalados → Meta Ads MCP – Gestão**. Escolha **Conectar**. Se o plugin listar o app da Meta separadamente, abra o app para encontrar o botão.
+3. Na tela oficial da Meta, escolha a sua conta, revise as permissões e selecione os ativos. Ao retornar ao ChatGPT, confira **Contas conectadas**. Nunca envie senha, código ou token pelo chat.
+
+O pacote usa OAuth com registro dinâmico de cliente (DCR) e começa sem credenciais. No catálogo local do Codex, a autenticação fica para o uso. No Work, a interface e as políticas do workspace determinam se **Conectar** aparece nos detalhes ou se o host pede autorização antes. Uma instalação em perfil já conectado preserva o vínculo existente. [Como o ChatGPT gerencia conexões](https://help.openai.com/en/articles/20001494-connecting-and-managing-app-accounts-in-chatgpt)
+
+Se o assistente só devolver um tutorial, peça: “Use o Plugin Creator nesta conversa. Salve o pacote privado no meu workspace, devolva o link e deixe a conexão Facebook para mim.” O arquivo pronto para o assistente é o [pacote portátil do plugin](dist/meta-ads-gestao.zip). Ele contém as skills e a definição do MCP, sem vínculo com o workspace de origem. Um upload aceito confirma o salvamento. Se o cliente informar **Somente desktop** ou os detalhes não mostrarem o app com **Conectar**, use o cadastro web abaixo para obter uma conexão MCP registrada no workspace. [Limites da importação pelo GitHub](https://help.openai.com/en/articles/20001504-importing-and-syncing-plugin-marketplaces-from-github)
 
 **Alternativa com navegador.** Se o fluxo padrão parar no cadastro web e você quiser que o assistente conduza os cliques, envie `Use $configurar-meta-ads-no-chatgpt com Computer Use e retome de onde parou.` A [skill com navegador](plugins/meta-ads-gestao/skills/configurar-meta-ads-no-chatgpt/SKILL.md) deixa o login e o consentimento sob seu controle. Se preferir receber os arquivos avulsos, anexe ao chat a [skill padrão](skills/configurar-meta-ads-mcp/SKILL.md) e o [ícone PNG](assets/meta-ads-icon.png) junto com a mesma mensagem.
 
@@ -21,11 +24,11 @@ A pessoa pode estar em outro workspace. Basta enviar a frase, sem anexos. Na pri
 
 Use estes passos quando o cadastro do conector precisar ser feito pela pessoa ou pelo administrador do workspace.
 
-1. Abra **Plugins → Pessoal** na conta e no espaço de trabalho em que usará o conector. Procure **Meta Ads MCP – Gestão** e confira se os detalhes mostram o servidor `https://mcp.facebook.com/ads`. Se já estiver conectado ao servidor correto, siga para o teste abaixo. Se encontrar o conector correto ainda desconectado, clique em **Conectar** e conclua a autorização na Meta. [Abrir Plugins no ChatGPT](https://chatgpt.com/plugins)
+1. Abra **Plugins → Pessoal** na conta e no espaço de trabalho em que usará o conector. Procure **Meta Ads MCP – Gestão** e confira se os detalhes mostram o servidor `https://mcp.facebook.com/ads`. Se já estiver conectado ao servidor correto, siga para o teste abaixo. Se o conector já aparece com **Conectar**, o cadastro está pronto. [Abrir Plugins no ChatGPT](https://chatgpt.com/plugins)
 2. Se o conector estiver ausente, abra **Plugins → + → Adicionar servidor MCP personalizado**.
 3. Em **Nome**, digite **Meta Ads MCP – Gestão**. Em **Escolher ícone**, selecione o arquivo [meta-ads-icon.png](assets/meta-ads-icon.png) que você baixou. Se quiser preencher a descrição, use “Consulte relatórios e gerencie campanhas nas contas autorizadas pela Meta. Alterações somente após confirmação explícita.”
 4. Em **URL do servidor**, cole `https://mcp.facebook.com/ads`. Selecione **OAuth** para autorizar o acesso pela Meta. Nas configurações avançadas, aguarde o ChatGPT identificar as opções do servidor. Escolha **Registro dinâmico de cliente (DCR)** se essa opção aparecer.
-5. Confira as permissões oferecidas conforme a tabela abaixo. Revise o aviso na tela e escolha **Criar como plugin**. Se aparecer **Instalar**, instale na sua conta. Clique em **Continuar** ou **Conectar**, faça login na página oficial da Meta e autorize os ativos escolhidos. Ao voltar ao ChatGPT, confira a conexão nos detalhes do plugin.
+5. Confira as permissões oferecidas conforme a tabela abaixo. Revise o aviso na tela e escolha **Criar como plugin**. Se aparecer **Instalar**, instale na sua conta. Para deixar o vínculo pendente, pare nos detalhes do plugin assim que aparecer **Conectar**. Se o host exigir consentimento já no cadastro, a própria pessoa decide se deseja prosseguir.
 
 ### Quais permissões escolher?
 
