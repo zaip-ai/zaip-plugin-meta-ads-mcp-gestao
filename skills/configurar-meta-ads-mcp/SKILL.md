@@ -1,11 +1,15 @@
 ---
 name: configurar-meta-ads-mcp
-description: Instale, conecte ou confira o Meta Ads MCP – Gestão pelo link do repositório no Codex ou no Dot. Use este fluxo padrão sem Computer Use.
+description: Instale o Meta Ads MCP – Gestão pelo repositório. No Work ou Dot, cadastre o conector web com Computer Use. No Codex local, instale pelo catálogo.
 ---
 
 # Instalar o Meta Ads MCP – Gestão
 
-Ao receber “instale esse plugin https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao”, faça os passos abaixo com as ferramentas do cliente em que a pessoa quer usar os anúncios. Use o GitHub ou o catálogo nativo para ler os arquivos. Não abra uma aba do ChatGPT, não peça acesso ao navegador e não peça novo login no ChatGPT. A autorização da Meta é pessoal e pode abrir uma página que a própria pessoa controla.
+Ao receber “instale esse plugin” com o link do projeto, use o procedimento do cliente em que a pessoa quer usar o plugin.
+
+## No ChatGPT Work ou Dot
+
+Execute diretamente a skill `configurar-meta-ads-no-chatgpt`, incluída no pacote. Se recebeu apenas este arquivo ou o link do GitHub, leia as [instruções de cadastro no Work](https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao/blob/main/plugins/meta-ads-gestao/skills/configurar-meta-ads-no-chatgpt/SKILL.md) e execute-as com Computer Use. Reutilize a aba do ChatGPT já autenticada. Se faltar, peça que a pessoa abra uma aba com o ChatGPT logado no workspace desejado e aguarde. Procure o conector web, cadastre o servidor somente se faltar e pare no botão **Conectar**, deixando o Facebook com a pessoa. O fluxo do Codex local abaixo só se aplica quando o destino é o Codex.
 
 ## No Codex local
 
@@ -13,18 +17,6 @@ Ao receber “instale esse plugin https://github.com/zaip-ai/zaip-plugin-meta-ad
 2. Se faltar o catálogo, execute `codex plugin marketplace add https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao --ref main`. Se o catálogo Git correto já existir, atualize apenas esse catálogo com `codex plugin marketplace upgrade zaip-meta-ads-plugins`. Se for uma fonte local legítima, confira a versão disponível nessa pasta.
 3. Consulte `codex plugin list --marketplace zaip-meta-ads-plugins --available --json`. Identifique `meta-ads-gestao` e sua versão. Se faltar a instalação da versão disponível, execute `codex plugin add meta-ads-gestao@zaip-meta-ads-plugins --json`. Verifique a instalação com `codex plugin list --marketplace zaip-meta-ads-plugins --json`. Se o plugin já estiver instalado e habilitado na versão pretendida, prossiga diretamente. Se aparecer desativado, use a opção de habilitar do cliente. Se o chat ainda não carregar as ferramentas após a instalação, oriente abrir uma nova conversa no Codex.
 4. Para um pedido de instalação, termine quando o plugin estiver instalado e habilitado. Informe o estado do MCP em `codex mcp list`. Em perfil novo, `not_logged_in` é o resultado esperado. Preserve qualquer vínculo anterior. Deixe a autenticação para quando a pessoa selecionar **Conectar** no cliente. Não execute login nem faça consultas durante a instalação.
-
-## No Dot ou ChatGPT Work no navegador
-
-1. Trabalhe na sessão autenticada desta conversa. Procure o plugin e o conector no workspace de destino. Se já houver uma cópia correta com o servidor `https://mcp.facebook.com/ads`, apresente seu cartão ou link. Se a origem de um homônimo for incerta, confira os detalhes antes de reutilizar ou modificar qualquer coisa.
-2. Se faltar o plugin, procure o **Plugin Creator** e a operação nativa **create_plugin**. Obtenha o [pacote portátil desta versão](https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao/raw/refs/heads/main/dist/meta-ads-gestao.zip) como arquivo local do executor. Se usar o checkout, o mesmo arquivo está em `dist/meta-ads-gestao.zip`. Confira que há um único plugin, com `plugin.json` e `mcp.json` na raiz, servidor HTTPS oficial e `auth.client.mode = dcr`. O ZIP contém a configuração e as skills da ZAIP, sem conta, token nem ID de conector de outro workspace.
-3. Chame **create_plugin** uma única vez com o caminho absoluto do arquivo no argumento `archive`. O salvamento ocorre na conta ou workspace autenticado do solicitante. Se essa ferramenta estiver indisponível mas houver uma operação nativa de **Adicionar servidor MCP personalizado**, use o endereço oficial, transporte Streamable HTTP e OAuth com registro dinâmico de cliente. Preserve a conexão pessoal para depois. Não recorra ao terminal temporário para instalar no perfil do Dot, nem abra uma sessão de navegador separada.
-4. Leia o resultado da ferramenta. Se salvar, devolva o **plugin_url** real como link clicável e oriente a pessoa a escolher **Instalar**, se aparecer. Confira se o host reconheceu o MCP e oferece **Conectar** nos detalhes do plugin ou do app incluído. Se só for possível confirmar o pacote salvo, diga exatamente isso. Não repita a criação após sucesso ou resposta ambígua. Se o plugin for marcado **Somente desktop** ou o app remoto não aparecer, informe que aquela cópia ainda não oferece o vínculo no Work web.
-5. Se faltar acesso ao Plugin Creator ou ele rejeitar o arquivo, informe a causa específica. Se houver **Enviar plugin** no workspace, apresente o pacote para upload pela pessoa. Se o host exigir um registro MCP próprio para habilitar o menu web, ofereça o cadastro **Plugins → + → Adicionar servidor MCP personalizado → Criar como plugin**. Se faltar permissão, identifique a etapa para o administrador. A alternativa com Computer Use só é usada por escolha explícita da pessoa. Não mande um tutorial como primeira resposta quando a ferramenta de criação estiver disponível.
-
-## Encerrar a instalação sem vínculo
-
-Mostre onde a pessoa poderá abrir **Plugins → Instalados → Meta Ads MCP – Gestão → Conectar**. Em alguns clientes o botão aparece ao abrir o app incluído no plugin. Quem decide quando clicar, escolher a conta Facebook e autorizar os ativos é a pessoa. Pare aqui se o pedido foi apenas instalar. Se o cliente pedir OAuth já no cadastro ou na instalação, informe essa exigência e deixe o consentimento pendente. Não desvincule contas existentes para simular uma primeira instalação.
 
 ## Autorizar e testar no cliente de destino
 

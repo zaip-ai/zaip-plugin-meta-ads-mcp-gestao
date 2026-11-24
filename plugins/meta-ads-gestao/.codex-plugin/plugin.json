@@ -1,6 +1,6 @@
 {
   "name": "meta-ads-gestao",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Relatórios e gestão de campanhas pelo servidor MCP oficial da Meta.",
   "mcpServers": "./.mcp.json",
   "skills": "./skills/",
