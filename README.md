@@ -26,16 +26,43 @@ Use estes passos quando o cadastro do conector precisar ser feito pela pessoa ou
 4. Em **URL do servidor**, cole `https://mcp.facebook.com/ads`. Selecione **OAuth** para autorizar o acesso pela Meta. Nas configurações avançadas, aguarde o ChatGPT identificar as opções do servidor. Escolha **Registro dinâmico de cliente (DCR)** se essa opção aparecer.
 5. Confira as permissões oferecidas conforme a tabela abaixo. Revise o aviso na tela e escolha **Criar como plugin**. Se aparecer **Instalar**, instale na sua conta. Para deixar o vínculo pendente, pare nos detalhes do plugin assim que aparecer **Conectar**. Se o host exigir consentimento já no cadastro, a própria pessoa decide se deseja prosseguir.
 
-### Quais permissões escolher?
+### O que significam Read e Write no ChatGPT?
 
-| Para quê | O que autorizar, se a Meta oferecer |
+Na tela de detalhes do aplicativo **Meta Ads MCP – Gestão** mostrada no print, o ChatGPT agrupou as ferramentas do conector em **Read (66 ações de leitura)** e **Write (51 ações de escrita)**. Abra cada grupo para ver quais ações aparecem na sua instalação.
+
+- **Read** permite fazer consultas, como ver quanto uma campanha gastou e quantas impressões recebeu. A consulta preserva os dados da campanha.
+- **Write** reúne ações que podem mudar dados ou permissões, como pausar um anúncio, alterar um orçamento ou revogar uma autorização de parceria. O assistente deve apresentar a ação e aguardar sua confirmação explícita antes de cada alteração, inclusive criação, edição, publicação, ativação ou exclusão.
+
+Esses números contam as ferramentas exibidas naquela tela. Os **escopos OAuth** abaixo definem o que você autoriza na Meta. Uma ação pode aparecer no ChatGPT e ainda exigir um escopo ou um nível de acesso que você não tem na conta, Página ou catálogo escolhido.
+
+### Quais permissões autorizar na Meta?
+
+Para **consultar relatórios**, use `ads_read` e `ads_mcp_management`, quando oferecidos. Para **gerenciar campanhas**, acrescente `ads_management`. Os demais escopos são opcionais conforme os ativos e as tarefas que você quer autorizar. [Referência de permissões da Meta](https://developers.facebook.com/documentation/development/permissions)
+
+#### Anúncios e relatórios
+
+| Escopo | O que permite |
 | --- | --- |
-| Consultar relatórios | `ads_read` e `ads_mcp_management` para usar o conector e ler os resultados. |
-| Gerir campanhas | Acrescente `ads_management` se também quiser fazer alterações. |
-| Acessar outros ativos | Escolha apenas o que pretende usar. `business_management` para o portfólio empresarial, `catalog_management` para catálogos, `pages_show_list` para listar Páginas e `pages_manage_ads` para anúncios vinculados às Páginas. |
-| Trabalhar com Instagram ou anúncios de parceria | `instagram_basic` para o perfil e mídias do Instagram. Para anúncios de parceria, `facebook_branded_content_ads_brand` no Facebook e `instagram_branded_content_ads_brand` no Instagram. |
+| `ads_read` | Consultar gasto, impressões, cliques e conversões das contas de anúncios autorizadas. O acesso é de leitura. |
+| `ads_management` | Consultar, criar e editar campanhas, conjuntos de anúncios e anúncios nas contas autorizadas, inclusive alterar orçamento e status. |
+| `ads_mcp_management` | Acessar o servidor MCP de anúncios da Meta. As ações disponíveis dependem também dos demais escopos e do seu acesso aos ativos. |
 
-O acesso depende do seu perfil e dos ativos escolhidos na Meta. Mesmo com permissão de gestão, o assistente deve apresentar a ação e aguardar sua confirmação explícita antes de cada criação, edição, publicação, ativação, mudança de orçamento ou exclusão. [Referência de permissões da Meta](https://developers.facebook.com/documentation/development/permissions)
+#### Empresa, catálogo e Páginas
+
+| Escopo | O que permite |
+| --- | --- |
+| `business_management` | Acessar o portfólio empresarial no Business Manager e consultar ou gerenciar os ativos conforme o papel atribuído ao seu perfil. |
+| `catalog_management` | Consultar e gerenciar catálogos de produtos, seus itens e conjuntos de produtos, conforme seu acesso. |
+| `pages_show_list` | Listar as Páginas do Facebook às quais você tem acesso. |
+| `pages_manage_ads` | Gerenciar anúncios vinculados às Páginas autorizadas. A publicação de posts orgânicos exige outra permissão. |
+
+#### Instagram e anúncios de parceria
+
+| Escopo | O que permite |
+| --- | --- |
+| `instagram_basic` | Ler dados básicos do perfil profissional e suas mídias. Ler mensagens diretas (DMs) e publicar posts orgânicos exigem outras permissões. |
+| `facebook_branded_content_ads_brand` | Ler posts do Facebook em que a marca foi marcada como parceira paga. Permite também consultar, solicitar ou revogar autorizações para veicular anúncios de parceria no Facebook. |
+| `instagram_branded_content_ads_brand` | Ler posts do Instagram em que a marca foi marcada como parceira paga e consultar, solicitar ou revogar autorizações para veicular anúncios de parceria no Instagram. |
 
 ## Teste de aceitação após a autorização
 
