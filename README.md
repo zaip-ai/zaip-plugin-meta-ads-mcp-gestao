@@ -2,41 +2,41 @@
 
 Plugin da ZAIP para consultar resultados e gerenciar campanhas pelo [servidor MCP oficial da Meta](https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-overview). Cada pessoa conecta sua própria conta Meta por OAuth.
 
-## Instalar pelo dot (ChatGPT Work)
+## Instalação local no dot ou no Codex
 
-Cole este pedido no dot, no workspace em que deseja usar o plugin.
+O plugin é distribuído neste repositório do GitHub. **Baixe os arquivos para o computador e instale a partir da pasta baixada, no perfil que você já usa.** O catálogo incluído no repositório permite que o aplicativo encontre o plugin nessa pasta. O servidor MCP roda na infraestrutura da Meta e o plugin se conecta a ele por HTTPS.
 
-> Instale o plugin **Meta Ads MCP – Gestão** da ZAIP na minha conta do workspace atual. Procure o plugin no diretório e abra a instalação. A origem é https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao. Se ele ainda precisar ser importado, confira se tenho acesso de administrador e me indique a etapa necessária. Abra a autorização da Meta para que eu escolha a conta. Depois que eu autorizar, use o plugin para listar minhas contas de anúncios acessíveis, sem alterar campanhas.
+### Pedido pronto para colar no agente
 
-Se o dot pedir uma ação na interface, siga a etapa correspondente.
+> Instale o plugin Meta Ads MCP – Gestão no meu perfil local atual. Baixe https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao para uma pasta permanente neste computador ou reutilize uma cópia existente deste repositório. Siga o README dessa pasta. No dot desktop, use a fonte local “ZAIP Meta Ads Plugins”. No Codex, registre a pasta com `codex plugin marketplace add .` e instale `meta-ads-gestao@zaip-meta-ads-plugins`. Abra o OAuth da Meta para eu autorizar no navegador. Depois, confirme a conexão com uma consulta de leitura às minhas contas de anúncios.
 
-1. **Plugin disponível no diretório.** Abra **Plugins**, procure **Meta Ads MCP – Gestão**, selecione **Instalar** e conclua a autorização da Meta quando solicitada.
-2. **Plugin ausente do diretório.** Um administrador do workspace abre **Admin → Plugins → Add → Import marketplace**. Em **Source**, informa `https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao`, deixa **Path** vazio e usa a branch `main`. Depois da importação, confere **Import results** e disponibiliza o plugin para a sua função. Volte ao diretório para instalá-lo. [Guia de importação do ChatGPT](https://learn.chatgpt.com/docs/enterprise/plugin-management).
-3. **Plugin marcado como Desktop only.** Abra o mesmo workspace no aplicativo desktop e inicie uma conversa com o plugin. [Disponibilidade de plugins importados](https://learn.chatgpt.com/docs/enterprise/plugin-management#desktop-only-plugins).
+### 1. Baixe o repositório
 
-## Instalar pelo agente Codex
-
-Cole este pedido no Codex que você já usa. A instalação usa o perfil local ativo do Codex.
-
-> Instale o plugin `meta-ads-gestao@zaip-meta-ads-plugins` no meu perfil atual do Codex. Use o marketplace de https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao na branch `main` e siga os comandos do README. Se já estiver instalado e habilitado, siga direto para a verificação do MCP. Se faltar autenticação, inicie o OAuth para eu concluir no navegador. Depois, teste a conexão listando minhas contas de anúncios, sem alterar campanhas.
-
-### Comandos para o agente
-
-Confira as fontes com `codex plugin marketplace list`. Na primeira instalação, registre a origem. Se `zaip-meta-ads-plugins` já estiver cadastrado com essa origem, atualize-o com `codex plugin marketplace upgrade zaip-meta-ads-plugins` e siga para a instalação.
+Em uma pasta onde deseja guardar o plugin, execute os comandos abaixo. Se já tiver uma cópia, abra a raiz dela. Também é possível usar **Code → Download ZIP** no GitHub e extrair o arquivo. A pasta certa contém este README e o arquivo `.agents/plugins/marketplace.json`.
 
 ```sh
-codex plugin marketplace add https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao --ref main
+git clone --branch main https://github.com/zaip-ai/zaip-plugin-meta-ads-mcp-gestao.git
+cd zaip-plugin-meta-ads-mcp-gestao
 ```
 
-Instale o plugin e confira se a entrada aparece com `installed: true` e `enabled: true`. Em seguida, localize o servidor `meta-ads` em `https://mcp.facebook.com/ads`.
+### 2A. Instale no dot (ChatGPT desktop)
+
+1. No aplicativo desktop, abra a pasta baixada como projeto no perfil em que deseja usar o plugin. Reinicie o aplicativo para ele carregar o catálogo do projeto.
+2. No modo Work, abra **Plugins** e escolha **ZAIP Meta Ads Plugins** no seletor de fontes. Essa fonte corresponde à pasta que você baixou.
+3. Selecione **Meta Ads MCP – Gestão**, clique em **Instalar** e conclua a autorização da Meta quando o aplicativo solicitar. [Guia de instalação de plugins locais](https://developers.openai.com/plugins/build/plugins#install-a-local-plugin-manually).
+
+### 2B. Instale no Codex
+
+Na raiz da pasta baixada, execute os comandos com o perfil habitual do Codex. O ponto em `marketplace add .` indica a pasta atual. Esse comando registra o catálogo local. O comando seguinte instala o plugin.
 
 ```sh
+codex plugin marketplace add .
 codex plugin add meta-ads-gestao@zaip-meta-ads-plugins
 codex plugin list --marketplace zaip-meta-ads-plugins --json
 codex mcp list
 ```
 
-Se o servidor mostrar `Not logged in`, inicie a autorização. No navegador, confira a identidade Meta e os acessos solicitados.
+Confira se o plugin aparece com `installed: true` e `enabled: true`, e se o servidor `meta-ads` aponta para `https://mcp.facebook.com/ads`. Se o estado for `Not logged in`, execute o comando abaixo e conclua a autorização no navegador com a conta Meta que tem acesso aos anúncios.
 
 ```sh
 codex mcp login meta-ads --scopes ads_read,ads_management,ads_mcp_management
