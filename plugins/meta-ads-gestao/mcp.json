@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "meta-ads": {
+      "type": "streamable-http",
+      "url": "https://mcp.facebook.com/ads",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "client": {
+              "mode": "dcr"
+            },
+            "defaultScopes": [
+              "ads_read",
+              "ads_management",
+              "ads_mcp_management"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "meta-ads-gestao",
+  "version": "1.0.0",
+  "description": "Relatórios e gestão de campanhas pelo servidor MCP oficial da Meta.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Meta Ads MCP – Gestão",
+        "shortDescription": "Consulte resultados e gerencie campanhas no Meta Ads.",
+        "category": "Other",
+        "capabilities": [
+          "Read",
+          "Write"
+        ]
+      }
+    }
+  }
+}

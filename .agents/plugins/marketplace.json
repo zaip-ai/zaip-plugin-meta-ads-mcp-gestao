@@ -1,0 +1,15 @@
+{
+  "name": "zaip-meta-ads-plugins",
+  "interface": {
+    "displayName": "ZAIP Meta Ads Plugins"
+  },
+  "plugins": [
+    {
+      "name": "meta-ads-gestao",
+      "source": {
+        "source": "local",
+        "path": "./plugins/meta-ads-gestao"
+      }
+    }
+  ]
+}
