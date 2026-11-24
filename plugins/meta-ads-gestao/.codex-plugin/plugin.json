@@ -1,8 +1,10 @@
 {
   "name": "meta-ads-gestao",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Relatórios e gestão de campanhas pelo servidor MCP oficial da Meta.",
   "mcpServers": "./.mcp.json",
+  "skills": "./skills/",
+  "onboardingSkill": "./skills/configurar-meta-ads-mcp/SKILL.md",
   "interface": {
     "displayName": "Meta Ads MCP – Gestão",
     "shortDescription": "Consulte resultados e gerencie campanhas no Meta Ads.",
