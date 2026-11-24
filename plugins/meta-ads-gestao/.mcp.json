@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "meta-ads": {
+      "url": "https://mcp.facebook.com/ads",
+      "scopes": [
+        "ads_read",
+        "ads_management",
+        "ads_mcp_management"
+      ]
+    }
+  }
+}

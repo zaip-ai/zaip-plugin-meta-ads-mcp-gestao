@@ -1,0 +1,17 @@
+{
+  "name": "meta-ads-gestao",
+  "version": "1.0.2",
+  "description": "Relatórios e gestão de campanhas pelo servidor MCP oficial da Meta.",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Meta Ads MCP – Gestão",
+    "shortDescription": "Consulte resultados e gerencie campanhas no Meta Ads.",
+    "category": "Other",
+    "composerIcon": "./assets/meta-icon.png",
+    "logo": "./assets/meta-icon.png",
+    "capabilities": [
+      "Read",
+      "Write"
+    ]
+  }
+}
